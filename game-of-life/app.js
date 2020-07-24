@@ -54,6 +54,7 @@ while (wave < 6) {
 
 
 function checkSurroundings(y, x) {
+  //use consts for directions next time?
   const spot = []
   if (x !== 0 && y !== 0 && x !== 9 && y !== 7) {
     spot.push([y - 1, x - 1, 'TL'], [y - 1, x, 'T'], [y - 1, x + 1, 'TR'], [y, x - 1, 'L'], [y, x + 1, 'R'], [y + 1, x - 1, 'BL'], [y + 1, x, 'B'], [y + 1, x + 1, 'BR'])
