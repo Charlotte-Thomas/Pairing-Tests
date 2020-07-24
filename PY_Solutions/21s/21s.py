@@ -18,6 +18,7 @@ sam = []
 def start_game():
     get_initial_hand(dealer)
     get_initial_hand(sam)
+    check_initial_hands()
 
 
 def get_initial_hand(player):
@@ -25,7 +26,24 @@ def get_initial_hand(player):
         suit = random.choice(list(deck.keys()))
         val = random.choice(list(deck[suit]))
         deck[suit].remove(val)
-        player.append({suit: val})
+        player.append({'suit': suit, 'value': val})
 
+
+def check_initial_hands():
+    dealer_total = check_hand(dealer)
+    sam_total = check_hand(sam)
+    print(sam_total)
+
+def check_hand(player):
+    tens = ['Jack', 'Queen', 'King']
+    vals = []
+    for card in player:
+        if tens.__contains__(card['value']):
+            vals.append(10)
+        elif card['value'] == 'Ace':
+            vals.append(11)
+        else:
+            vals.append(card['value'])
+    return sum(vals)
 
 start_game()
