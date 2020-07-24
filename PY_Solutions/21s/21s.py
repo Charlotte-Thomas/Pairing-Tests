@@ -15,7 +15,6 @@ deck = {
 dealer = []
 sam = []
 
-
 def start_game():
     for i in range(2):
         get_random_card(dealer)
@@ -23,7 +22,7 @@ def start_game():
     check_initial_hands()
     print(sam, dealer)
     deal_sam()
-
+    deal_dealer()
 
 def get_random_card(player):
     suit = random.choice(list(deck.keys()))
@@ -66,7 +65,13 @@ def deal_sam():
             return
 
 
-        
+def deal_dealer():
+    if check_hand(sam) <= 21:
+        while check_hand(dealer) < check_hand(sam):
+            get_random_card(dealer)
+            if check_hand(dealer) > 21:
+                print('dealer is bust')
+                return
 
 
 start_game()
