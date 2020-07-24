@@ -22,6 +22,7 @@ def start_game():
         get_random_card(sam)
     check_initial_hands()
     print(sam, dealer)
+    deal_sam()
 
 
 def get_random_card(player):
@@ -55,6 +56,17 @@ def check_hand(player):
         else:
             vals.append(card['value'])
     return sum(vals)
+
+
+def deal_sam():
+    while check_hand(sam) <= 17:
+        get_random_card(sam)
+        if check_hand(sam) > 21:
+            print('sam is bust')
+            return
+
+
+        
 
 
 start_game()
