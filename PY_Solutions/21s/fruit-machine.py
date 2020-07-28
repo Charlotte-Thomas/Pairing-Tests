@@ -16,7 +16,8 @@ while repeat:
             global repeat
             slots = random_slots()
             check_slots(slots)
-        choice = input(f' player money: {player_money}, \n machine money: {machine_money} \n try again? (y/n): ').lower()
+        choice = input(
+            f' player money: {player_money}, \n machine money: {machine_money} \n try again? (y/n): ').lower()
         if choice == 'n':
             repeat = False
 
@@ -44,14 +45,18 @@ while repeat:
             print('all unique!')
             player_money += machine_money / 2
             machine_money = machine_money / 2
-        elsif duplicates():
-            print('you loose, try again')
-    
+        elif check_duplicate(slots):
+            print('duplicates found, you win!')
+            player_money += 50
+            machine_money -= 50
+
     def all_unique(x):
         seen = set()
         return not any(i in seen or seen.add(i) for i in x)
 
-
-    def duplicates():
+    def check_duplicate(slots):
+        for slot in enumerate(slots):
+            if slot[0] != 3 and slot[1] == slots[slot[0] + 1]:
+                return True
 
     start_game()
