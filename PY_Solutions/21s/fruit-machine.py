@@ -15,11 +15,8 @@ while repeat:
         if exchange_money():
             global repeat
             slots = random_slots()
-            if check_slots(slots):
-                print('jackpot!')
-            else:
-                print('you loose, try again')
-        choice = input(f'player money: {player_money}, try again? (y/n): ').lower()
+            check_slots(slots)
+        choice = input(f' player money: {player_money}, \n machine money: {machine_money} \n try again? (y/n): ').lower()
         if choice == 'n':
             repeat = False
 
@@ -28,10 +25,9 @@ while repeat:
         if player_money < 10:
             print('player does not have enough money to continue')
             return False
-        else:
-            machine_money += 10
-            player_money -= 10
-            return True
+        machine_money += 10
+        player_money -= 10
+        return True
 
     def random_slots():
         slots = random.choices(colours, k=4)
@@ -39,6 +35,23 @@ while repeat:
         return slots
 
     def check_slots(slots):
-        return all(x == slots[0] for x in slots)
+        global repeat, machine_money, player_money
+        if all(x == slots[0] for x in slots):
+            print('jackpot!')
+            player_money += machine_money
+            machine_money = 0
+        elif all_unique(slots):
+            print('all unique!')
+            player_money += machine_money / 2
+            machine_money = machine_money / 2
+        elsif duplicates():
+            print('you loose, try again')
+    
+    def all_unique(x):
+        seen = set()
+        return not any(i in seen or seen.add(i) for i in x)
+
+
+    def duplicates():
 
     start_game()
