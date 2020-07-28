@@ -49,6 +49,8 @@ while repeat:
             print('duplicates found, you win!')
             player_money += 50
             deduct_machine(50)
+        else:
+            print('no matches, try again')
 
     def all_unique(x):
         seen = set()
