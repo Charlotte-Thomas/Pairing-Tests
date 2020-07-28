@@ -48,7 +48,7 @@ while repeat:
         elif check_duplicate(slots):
             print('duplicates found, you win!')
             player_money += 50
-            machine_money -= 50
+            deduct_machine(50)
 
     def all_unique(x):
         seen = set()
@@ -58,5 +58,12 @@ while repeat:
         for slot in enumerate(slots):
             if slot[0] != 3 and slot[1] == slots[slot[0] + 1]:
                 return True
+
+    def deduct_machine(total):
+        global machine_money
+        if machine_money >= total:
+            machine_money -= total
+        else:
+            machine_money = 0
 
     start_game()
