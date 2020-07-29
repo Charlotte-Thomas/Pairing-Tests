@@ -1,7 +1,7 @@
 
 def start_game():
     grid = create_grid()
-    show_grid(grid)
+    show_grid(grid, 1)
 
 def create_grid():
     grid = []
@@ -12,8 +12,10 @@ def create_grid():
         grid.append(row)
     return grid
 
-def show_grid(grid):
+def show_grid(grid, wave):
+    print('wave:', wave)
     for col in grid:
         print((' ').join(col))
+    print('\n')
 
 start_game()
