@@ -36,13 +36,23 @@ def determine_life(grid):
     col_sides = [0, 9]
     for y in range(0, 7):
         for x in range(0, 10):
-            cell_count = 0
             if y not in row_sides and x not in col_sides:
-                directions = [grid[y-1][x-1], grid[y-1][x], grid[y-1][x+1], grid[y][x-1], grid[y][x+1], grid[y+1][x-1], grid[y+1][x], grid[y+1][x+1]]
-                for direction in directions:
-                    if direction == 'x':
-                        cell_count += 1
-                        print('no')
+                cell_count = check_center(grid, y, x)
+            elif y == 0 and x not in col_sides:
+                cell_count = check_top(grid, y, x)
+
+def check_center(grid, y, x):
+    cell_count = 0
+    directions = [grid[y-1][x-1], grid[y-1][x], grid[y-1][x+1], grid[y][x-1], grid[y][x+1], grid[y+1][x-1], grid[y+1][x], grid[y+1][x+1]]
+    for direction in directions:
+        if direction == 'x':
+            cell_count += 1
+    return cell_count
+
+
+def check_top(grid, y, x):
+    cell_count = 0
+    return cell_count
 
 
 start_game()
