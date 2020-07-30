@@ -4,6 +4,8 @@ def start_game():
     starting_cells = [[0, 1], [0, 2], [0, 3], [0, 4]]
     grid = place_cells(grid, starting_cells)
     show_grid(grid, 1)
+    # while len(starting_cells) > 0:
+    determine_life(grid)
 
 
 def create_grid():
@@ -21,11 +23,33 @@ def place_cells(grid, starting_cells):
         grid[cell[0]][cell[1]] = 'x'
     return grid
 
+
 def show_grid(grid, wave):
     print('wave:', wave)
     for col in grid:
         print((' ').join(col))
     print('\n')
+
+
+def determine_life(grid):
+    row_sides = [0, 6]
+    col_sides = [0, 9]
+    for y in range(0, 7):
+        for x in range(0, 10):
+            cell_count = 0
+            directions = [grid[y-1][x-1], grid[y-1][x], grid[y-1][x + 1]]
+            if y not in row_sides and x not in col_sides:
+
+
+            
+                # if grid[y-1][x-1] == 'x':
+                #     cell_count += 1
+                # if grid[y-1][x] == 'x':
+                #     cell_count += 1
+                # if grid[y-1][x + 1] == 'x':
+                #     cell_count += 1
+
+
 
 
 start_game()
