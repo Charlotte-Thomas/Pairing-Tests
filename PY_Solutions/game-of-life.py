@@ -37,19 +37,12 @@ def determine_life(grid):
     for y in range(0, 7):
         for x in range(0, 10):
             cell_count = 0
-            directions = [grid[y-1][x-1], grid[y-1][x], grid[y-1][x + 1]]
             if y not in row_sides and x not in col_sides:
-
-
-            
-                # if grid[y-1][x-1] == 'x':
-                #     cell_count += 1
-                # if grid[y-1][x] == 'x':
-                #     cell_count += 1
-                # if grid[y-1][x + 1] == 'x':
-                #     cell_count += 1
-
-
+                directions = [grid[y-1][x-1], grid[y-1][x], grid[y-1][x+1], grid[y][x-1], grid[y][x+1], grid[y+1][x-1], grid[y+1][x], grid[y+1][x+1]]
+                for direction in directions:
+                    if direction == 'x':
+                        cell_count += 1
+                        print('no')
 
 
 start_game()
