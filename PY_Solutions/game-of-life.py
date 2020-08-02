@@ -40,6 +40,8 @@ def determine_life(grid):
                 cell_count = check_center(grid, y, x)
             elif y == 0 and x not in col_sides:
                 cell_count = check_top(grid, y, x)
+            else:
+                cell_count = check_corner(grid, y, x)
 
 def check_center(grid, y, x):
     cell_count = 0
@@ -51,6 +53,10 @@ def check_center(grid, y, x):
 
 
 def check_top(grid, y, x):
+    cell_count = 0
+    return cell_count
+
+def check_corner(grid, y, x):
     cell_count = 0
     return cell_count
 
