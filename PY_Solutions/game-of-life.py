@@ -35,6 +35,7 @@ def determine_life(grid):
     row_sides = [0, 6]
     col_sides = [0, 9]
     cell_count = 0
+    cells_alive = []
     for y in range(0, 7):
         for x in range(0, 10):
             if y not in row_sides and x not in col_sides:
@@ -43,7 +44,12 @@ def determine_life(grid):
                 cell_count = check_top(grid, y, x)
             else:
                 cell_count = check_corner(grid, y, x)
-            determine_death(cell_count)
+            if not determine_death(grid, y, x, cell_count):
+                cells_alive.append([y, x])
+    print(cells_alive)
+    grid = create_grid()
+    grid = place_cells(grid, cells_alive)
+    show_grid(grid, 2)
 
 
 def check_center(grid, y, x):
@@ -79,14 +85,12 @@ def find_x(directions):
     return cell_count
 
 
-def determine_death(cell_count):
-    death = False
-    if cell_count < 2:
-        death = True
-    elif cell_count <= 3:
+def determine_death(grid, y, x, cell_count):
+    death = True
+    if 1 < cell_count < 4 and grid[y][x] == 'x':
         death = False
-    elif cell_count > 3:
-        death = True
-
+    elif cell_count == 3 and grid[y][x] == '.':
+        death = False
+    return death
 
 start_game()
