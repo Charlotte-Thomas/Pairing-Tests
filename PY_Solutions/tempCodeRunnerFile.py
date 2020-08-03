@@ -1,2 +1,2 @@
-:
-            #     cell_count
+ > 0:
+        #     show_grid(gr

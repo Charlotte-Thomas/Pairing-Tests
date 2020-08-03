@@ -1,11 +1,18 @@
 
 def start_game():
-    grid = create_grid()
-    starting_cells = [[0, 1], [0, 2], [0, 3], [0, 4]]
-    grid = place_cells(grid, starting_cells)
-    show_grid(grid, 1)
-    # while len(starting_cells) > 0:
-    determine_life(grid)
+    alive = True
+    wave = 1
+    starting_cells = [[0, 1], [2, 7], [3, 6], [1, 9], [2, 5], [3, 8]]
+    grid = place_cells(create_grid(), starting_cells)
+    show_grid(grid, wave)
+    while len(grid) > 0 and wave < 10:
+        grid = determine_life(grid)
+        wave += 1
+        if len(grid) > 0:
+            show_grid(grid, wave)
+        else:
+            print('All cells have died')
+
 
 
 def create_grid():
@@ -46,10 +53,11 @@ def determine_life(grid):
                 cell_count = check_corner(grid, y, x)
             if not determine_death(grid, y, x, cell_count):
                 cells_alive.append([y, x])
-    print(cells_alive)
-    grid = create_grid()
-    grid = place_cells(grid, cells_alive)
-    show_grid(grid, 2)
+    if len(cells_alive) > 0:
+        grid = place_cells(create_grid(), cells_alive)
+    else:
+        grid = []
+    return grid
 
 
 def check_center(grid, y, x):
