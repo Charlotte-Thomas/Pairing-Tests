@@ -56,7 +56,16 @@ def check_top(grid, y, x):
     return cell_count
 
 def check_corner(grid, y, x):
-    cell_count = 0
+    directions = []
+    if y == 0 and x == 0:
+        directions = [grid[y][x+1], grid[y+1][x], grid[y+1][x+1]]
+    elif y == 0 and x == 9:
+        directions = [grid[y][x-1], grid[y+1][x], grid[y+1][x-1]]
+    elif y == 6 and x == 0:
+        directions = [grid[y-1][x], grid[y-1][x+1], grid[y][x+1]]
+    elif y == 6 and x == 9:
+        directions = [grid[y-1][x], grid[y-1][x-1], grid[y][x-1]]
+    cell_count = get_x(directions)
     return cell_count
 
 
