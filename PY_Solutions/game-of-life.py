@@ -1,6 +1,5 @@
 
 def start_game():
-    alive = True
     wave = 1
     starting_cells = [[0, 1], [2, 7], [3, 6], [1, 9], [2, 5], [3, 8]]
     grid = place_cells(create_grid(), starting_cells)
